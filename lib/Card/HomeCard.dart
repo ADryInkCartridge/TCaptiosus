@@ -136,7 +136,10 @@ Widget subjectList(BuildContext context) {
                   child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                          onTap: () {}, child: Icon(Icons.navigate_next))),
+                          onTap: () {
+                            print(items[index].pelajaran);
+                          },
+                          child: Icon(Icons.navigate_next))),
                 ),
               ),
             ),

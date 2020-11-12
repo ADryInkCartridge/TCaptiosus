@@ -29,8 +29,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final searchBar = TextEditingController();
-  bool barEmpty = true;
   int id = 1;
+
   String name = "Melanchton Bonaficio Butarbutar";
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
+                      padding: EdgeInsets.only(top: 3),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18.0),
