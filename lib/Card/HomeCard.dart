@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'CardCons.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,13 @@ class SubjectCard extends StatelessWidget {
 }
 
 Widget subjectList(BuildContext context) {
+  Color generateRandomColor() {
+    Random random = Random();
+
+    return Color.fromARGB(
+        255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+  }
+
   List<Subjects> items = [
     Subjects(
         nama: "Aji Rindra FPF",
@@ -46,7 +55,7 @@ Widget subjectList(BuildContext context) {
             Card(
               margin: EdgeInsets.fromLTRB(30, 15, 20, 15),
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.orange, width: 1),
+                side: BorderSide(color: generateRandomColor(), width: 1),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Row(
