@@ -49,6 +49,7 @@ Widget subjectList(BuildContext context) {
         child: new InkWell(
           onTap: () => print("tapped"),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
                   flex: 2,
@@ -88,12 +89,30 @@ Widget subjectList(BuildContext context) {
                   )),
               Expanded(
                   flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Post"),
-                      Text(items[index].jam.toString()),
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Text(
+                          "Post",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          items[index].jam.toString(),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ],
+                    ),
                   )),
             ],
           ),

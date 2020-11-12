@@ -3,9 +3,23 @@ import 'package:forum_test/Card/HomeCard.dart';
 
 Text status(int id) {
   if (id == 1)
-    return Text("Mahasiswa");
+    return Text(
+      "Mahasiswa",
+      style: TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 15,
+      ),
+    );
   else
-    return Text("Dosen");
+    return Text(
+      "Dosen",
+      style: TextStyle(
+        fontFamily: "Poppins",
+        fontWeight: FontWeight.w500,
+        fontSize: 15,
+      ),
+    );
 }
 
 class HomePage extends StatefulWidget {
@@ -15,7 +29,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int id = 1;
-  String name = "Melanchton";
+  String name = "Melanchton Bonaficio Butarbutar";
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -63,11 +77,15 @@ class _HomePageState extends State<HomePage> {
               Center(
                 child: status(id),
               ),
-              SizedBox(
-                height: 15,
-              ),
               Center(
-                child: Text(name),
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 15,
