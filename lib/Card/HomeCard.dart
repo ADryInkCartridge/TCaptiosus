@@ -103,12 +103,12 @@ Widget subjectList(BuildContext context) {
                           ),
                         ),
                         Text(
-                          items[index].jam.toString(),
+                          items[index].jam.toStringAsFixed(2),
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w500,
-                            fontSize: 30,
+                            fontSize: 26,
                           ),
                         ),
                       ],

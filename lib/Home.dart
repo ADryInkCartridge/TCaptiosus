@@ -66,9 +66,12 @@ class _HomePageState extends State<HomePage> {
                 height: 75,
               ),
               Center(
-                child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/img/mel.PNG"),
-                  radius: 60,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage("assets/img/mel.PNG"),
+                    radius: 60,
+                  ),
                 ),
               ),
               SizedBox(
