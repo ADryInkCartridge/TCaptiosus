@@ -5,13 +5,27 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.pushNamed(context, "/home"),
-        label: Text("Get Started"),
-        backgroundColor: Colors.deepPurple,
-        elevation: 12,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5))),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 47),
+        child: SizedBox(
+          height: 34,
+          width: 171,
+          child: FloatingActionButton.extended(
+            elevation: 0,
+            onPressed: () => Navigator.pushNamed(context, "/home"),
+            label: Text(
+              "Get Started",
+              style: TextStyle(
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+              ),
+            ),
+            backgroundColor: getstarted,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Stack(
@@ -48,6 +62,7 @@ class LandingPage extends StatelessWidget {
                   textAlign: TextAlign.right,
                   text: TextSpan(
                       style: TextStyle(
+                        height: 1.1,
                         fontSize: 44,
                         fontFamily: "Poppins",
                         fontWeight: FontWeight.w500,

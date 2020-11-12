@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:forum_test/Card/HomeCard.dart';
+
+Text status(int id) {
+  if (id == 1)
+    return Text("Mahasiswa");
+  else
+    return Text("Dosen");
+}
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int id = 1;
+  String name = "Melanchton";
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -37,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Column(
-            children: [
+            children: <Widget>[
               SizedBox(
                 height: 75,
               ),
@@ -47,8 +57,28 @@ class _HomePageState extends State<HomePage> {
                   radius: 60,
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: status(id),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Center(
+                child: Text(name),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                child: Center(
+                  child: SubjectCard(),
+                ),
+              )
             ],
-          )
+          ),
         ],
       ),
     ));
