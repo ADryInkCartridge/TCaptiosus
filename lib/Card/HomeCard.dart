@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'CardCons.dart';
 import 'package:flutter/material.dart';
 

@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontFamily: "Poppins", fontSize: 14),
                           textAlign: TextAlign.center,
                           cursorColor: Colors.grey,
+                          controller: searchBar,
                           decoration: new InputDecoration(
                             contentPadding: EdgeInsets.only(
                               bottom: 0,
