@@ -12,6 +12,8 @@ class Verification extends StatefulWidget {
 }
 
 class _VerificationState extends State<Verification> {
+  String nrp = '';
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +46,11 @@ class _VerificationState extends State<Verification> {
               ),
               SizedBox(height: 30),
               TextFormField(
+                onChanged: (val) {
+                  setState(() => nrp = val);
+                },
                 // color: Colors.orange,
+                keyboardType: TextInputType.number,
                 cursorColor: HexColor("ef9c80"),
                 decoration: new InputDecoration(
                   labelText: "NRP",
@@ -68,19 +74,22 @@ class _VerificationState extends State<Verification> {
               SizedBox(height: 20),
               Center(
                 child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: HexColor("8293c2"),
-                  child: Text(
-                    "Send",
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                  ),
-                  onPressed: () {},
-                ),
+                    color: HexColor("8293c2"),
+                    child: Text(
+                      "Send",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState.validate()) {
+                        formKey.currentState.save();
+                      }
+                    }),
               ),
               SizedBox(height: 140.0),
               Image.asset(
