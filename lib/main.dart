@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Landing.dart';
-import 'Login.dart';
 import 'Home.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'Login/forgot.dart';
+import 'Login/login.dart';
+import 'Login/verification.dart';
+import 'Login/signup.dart';
 
 void main() => runApp(new MyApp());
 
@@ -13,10 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "Forum",
+      home: LandingPage(),
       routes: <String, WidgetBuilder>{
-        '/login2': (BuildContext context) => new LoginPage(),
-        '/': (BuildContext context) => new LandingPage(),
-        '/login': (BuildContext context) => new LoginPage(),
+        "/register": (BuildContext context) => SignUp(),
+        "/forgot": (BuildContext context) => Forgot_Password(),
+        "/verification": (BuildContext context) => Verification(),
+        '/login': (BuildContext context) => new SignIn(),
         '/home': (BuildContext context) => new HomePage(),
       },
       initialRoute: '/',
