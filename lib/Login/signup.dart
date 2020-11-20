@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:forum_test/Services/auth.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:email_validator/email_validator.dart';
+import 'verification.dart'
 
 void main() => runApp(MaterialApp(
       home: SignUp(),
@@ -229,6 +231,12 @@ class _SignUpState extends State<SignUp> {
                               print(_value);
                               dynamic result = await auth.regEmailandPass(
                                   email, password, name, status);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          Verification()),
+                                  ModalRoute.withName('/'));
                             }
                           },
                         ),
