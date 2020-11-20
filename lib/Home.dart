@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Card/HomeCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 Text status(int id) {
   if (id == 1)
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
   int id = 1;
 
   String name = "Melanchton Bonaficio Butarbutar";
+  final databaseReference = Firestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -74,6 +77,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontFamily: "Poppins", fontSize: 14),
                           textAlign: TextAlign.center,
                           cursorColor: Colors.grey,
+                          controller: searchBar,
                           decoration: new InputDecoration(
                             contentPadding: EdgeInsets.only(
                               bottom: 0,

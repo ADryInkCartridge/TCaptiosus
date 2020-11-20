@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
           width: 171,
           child: FloatingActionButton.extended(
             elevation: 0,
-            onPressed: () => Navigator.pushNamed(context, "/home"),
+            onPressed: () => Navigator.pushNamed(context, "/login"),
             label: Text(
               "Get Started",
               style: TextStyle(
@@ -45,7 +45,7 @@ class LandingPage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 15, 47, 0),
                     child: Image.asset(
-                      "assets/img/logo.png",
+                      "assets/img/logo gede.png",
                       width: 100,
                       height: 100,
                     ),
