@@ -54,6 +54,7 @@ class _VerificationState extends State<Verification> {
                       ),
                       SizedBox(height: 30),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         onChanged: (val) {
                           setState(() => nrp = val);
                         },
