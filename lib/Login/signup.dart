@@ -80,6 +80,12 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (name) {
+                          if (name.isEmpty) {
+                            return 'Invalid Name';
+                          }
+                          return null;
+                        },
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
@@ -108,6 +114,9 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (email) => EmailValidator.validate(email)
+                            ? null
+                            : "Invalid email address",
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
@@ -136,6 +145,15 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (password) {
+                          Pattern pattern =
+                              r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
+                          RegExp regex = new RegExp(pattern);
+                          if (!regex.hasMatch(password))
+                            return 'Invalid password';
+                          else
+                            return null;
+                        },
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
