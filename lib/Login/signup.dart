@@ -82,7 +82,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         validator: (name) {
                           if (name.isEmpty) {
-                            return 'Invalid Name';
+                            return 'Invalid name';
                           }
                           return null;
                         },
