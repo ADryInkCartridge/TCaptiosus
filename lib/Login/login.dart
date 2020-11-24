@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:forum_test/Services/auth.dart';
 import 'signup.dart';
 import "forgot.dart";
 import 'package:forum_test/Home.dart';
@@ -19,7 +20,9 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   String email = '';
   String password = '';
+  String errormessage = '';
   final formKey = GlobalKey<FormState>();
+  final authService auth = authService();
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -50,7 +53,15 @@ class _SignInState extends State<SignIn> {
                         "Sign In Now",
                         style: TextStyle(fontSize: 18, fontFamily: 'Poppins'),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(
+                          child: Text(
+                            errormessage,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                                color: Colors.red),
+                          ),
+                          height: 30),
                       TextFormField(
                         onChanged: (val) {
                           setState(() => email = val);
@@ -171,12 +182,20 @@ class _SignInState extends State<SignIn> {
                               formKey.currentState.save();
                               print(email);
                               print(password);
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          HomePage()),
-                                  ModalRoute.withName('/'));
+                              dynamic result =
+                                  await auth.login(email, password);
+                              if (result == null) {
+                                setState(() {
+                                  errormessage = "Invalid Email or Password";
+                                });
+                              } else {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            HomePage()),
+                                    ModalRoute.withName('/'));
+                              }
                             }
                           },
                         ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Card/HomeCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:forum_test/Services/auth.dart';
 
-Text status(int id) {
-  if (id == 1)
+Text status(bool id) {
+  if (id == true)
     return Text(
       "Mahasiswa",
       style: TextStyle(
@@ -30,9 +32,34 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final searchBar = TextEditingController();
-  int id = 1;
+  final authService auth = authService();
+  final FirebaseAuth user = FirebaseAuth.instance;
+  String name = '';
+  bool id;
 
-  String name = "Melanchton Bonaficio Butarbutar";
+  @override
+  void initState() {
+    getUserData();
+    super.initState();
+  }
+
+  void getUserData() async {
+    final FirebaseUser data = await user.currentUser();
+    final String uid = data.uid;
+    print(uid);
+    DocumentSnapshot userData = await Firestore.instance
+        .collection('users')
+        .document(uid)
+        .get()
+        .then((DocumentSnapshot value) {
+      if (value.data["Name"].toString() != name)
+        setState(() {
+          name = value.data["Name"].toString();
+          id = value.data["Status"];
+        });
+    });
+  }
+
   final databaseReference = Firestore.instance;
 
   @override
@@ -50,9 +77,12 @@ class _HomePageState extends State<HomePage> {
               ))),
               AppBar(
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
+                    icon: Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () {
+                      auth.signOut();
+                      //DatabaseService().getUserData2();
+                      //getUserData();
+                    }),
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
                 title: Row(
