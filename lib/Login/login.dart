@@ -194,7 +194,7 @@ class _SignInState extends State<SignIn> {
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
                                             HomePage()),
-                                    ModalRoute.withName('/'));
+                                    ModalRoute.withName('/home'));
                               }
                             }
                           },

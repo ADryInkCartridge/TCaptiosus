@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:forum_test/Card/CardCons.dart';
 
 class DatabaseService {
   final String uid;
@@ -6,6 +7,8 @@ class DatabaseService {
 
   final CollectionReference userProfile =
       Firestore.instance.collection('users');
+  final CollectionReference questionEntries =
+      Firestore.instance.collection('questions');
 
   Future updateUserData(String name, bool status) async {
     return await userProfile
@@ -13,21 +16,19 @@ class DatabaseService {
         .setData({'Name': name, 'Status': status});
   }
 
-  Future getUserData() async {
-    final CollectionReference userProfile =
-        Firestore.instance.collection('users');
-    return await userProfile
-        .document(uid)
-        .get()
-        .then((DocumentSnapshot data) => print(data.data["name"]["status"]));
+  List<Subjects> _subjectSnapshots(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      print(doc.data.toString());
+      return Subjects(
+        nama: doc.data['name'] ?? ' ',
+        jam: doc.data['jam'] ?? '',
+        pelajaran: doc.data['pelajaran'] ?? ' ',
+        materi: doc.data['materi'] ?? ' ',
+      );
+    }).toList();
   }
 
-  Future getUserData2() async {
-    final CollectionReference userProfile =
-        Firestore.instance.collection('users');
-    return await userProfile
-        .document("")
-        .get()
-        .then((DocumentSnapshot data) => print(data.data["Name"].toString()));
+  Stream<List<Subjects>> get questions {
+    return questionEntries.snapshots().map(_subjectSnapshots);
   }
 }

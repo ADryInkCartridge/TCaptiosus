@@ -1,8 +1,7 @@
 import 'dart:math';
+import 'package:provider/provider.dart';
 import 'CardCons.dart';
 import 'package:flutter/material.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SubjectCard extends StatelessWidget {
   @override
@@ -19,36 +18,15 @@ Widget subjectList(BuildContext context) {
         255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
   }
 
-  List<Subjects> items = [
-    Subjects(
-        nama: "Aji Rindra FPF",
-        materi: "Teknik Terbuka Secant",
-        pelajaran: "Komputasi Numerik",
-        jam: 23),
-    Subjects(
-        nama: "Melanchton Bonaficio",
-        materi: "Read Only Memory",
-        pelajaran: "Organisasi Komputer",
-        jam: 15),
-    Subjects(
-        nama: "Gerald Elroy Van Ryan",
-        materi: "Inheritance",
-        pelajaran: "Pemograman Basis Objek",
-        jam: 2),
-    Subjects(
-        nama: "Gerald Elroy Van Ryan",
-        materi: "Inheritance",
-        pelajaran: "Pemograman Basis Objek",
-        jam: 2),
-    Subjects(
-        nama: "Gerald Elroy Van Ryan",
-        materi: "Inheritance",
-        pelajaran: "Pemograman Basis Objek",
-        jam: 2),
-  ];
-
+  final questions = Provider.of<List<Subjects>>(context);
+  // questions.forEach((questions) {
+  //   print(questions.jam);
+  //   print(questions.nama);
+  //   print(questions.materi);
+  //   print(questions.pelajaran);
+  // });
   return ListView.builder(
-    itemCount: items.length,
+    itemCount: questions.length,
     itemBuilder: (context, index) {
       return Container(
         child: Stack(
@@ -70,7 +48,7 @@ Widget subjectList(BuildContext context) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              items[index].pelajaran,
+                              questions[index].pelajaran,
                               style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.w500,
@@ -78,7 +56,7 @@ Widget subjectList(BuildContext context) {
                               ),
                             ),
                             Text(
-                              "Materi : ${items[index].materi}",
+                              "Materi : ${questions[index].materi}",
                               style: TextStyle(
                                 height: 1.8,
                                 fontFamily: "Poppins",
@@ -87,7 +65,7 @@ Widget subjectList(BuildContext context) {
                               ),
                             ),
                             Text(
-                              items[index].nama,
+                              questions[index].nama,
                               style: TextStyle(
                                 height: 1.8,
                                 fontFamily: "Poppins",
@@ -114,7 +92,7 @@ Widget subjectList(BuildContext context) {
                               ),
                             ),
                             Text(
-                              items[index].jam.toStringAsFixed(2),
+                              questions[index].jam,
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 fontFamily: "Poppins",
@@ -147,7 +125,7 @@ Widget subjectList(BuildContext context) {
                       color: Colors.transparent,
                       child: InkWell(
                           onTap: () {
-                            print(items[index].pelajaran);
+                            print(questions[index].pelajaran);
                           },
                           child: Icon(Icons.navigate_next))),
                 ),
