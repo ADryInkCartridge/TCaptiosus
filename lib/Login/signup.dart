@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:forum_test/Services/auth.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:email_validator/email_validator.dart';
-import 'verification.dart';
 import 'package:forum_test/Home.dart';
 
 void main() => runApp(MaterialApp(

@@ -30,6 +30,8 @@ dependencies:
   hexcolor: ^1.0.6
   flutter_spinkit: "^4.1.2"
   provider: 4.3.2+2
+  image_picker: 0.6.2+3
+  firebase_storage: ^3.1.5
 
 dev_dependencies:
   flutter_test:

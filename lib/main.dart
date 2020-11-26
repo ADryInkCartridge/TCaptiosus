@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Landing.dart';
+import 'package:forum_test/Services/add_questions.dart';
 import 'package:forum_test/Services/auth.dart';
 import 'package:forum_test/Services/user.dart';
 import 'package:forum_test/wrapper.dart';
@@ -8,6 +9,7 @@ import 'Login/forgot.dart';
 import 'Login/login.dart';
 import 'Login/verification.dart';
 import 'Login/signup.dart';
+import 'Services/add_answer.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(new MyApp());
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
           "/verification": (BuildContext context) => Verification(),
           '/login': (BuildContext context) => new SignIn(),
           '/home': (BuildContext context) => new HomePage(),
+          '/add_answer': (BuildContext context) => new Add_Answer(),
+          '/add_question': (BuildContext context) => new Add_Question(),
         },
         initialRoute: '/',
       ),

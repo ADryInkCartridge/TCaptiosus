@@ -3,6 +3,7 @@ class Subjects {
   String materi;
   String nama;
   String jam;
+  String deskripsi;
 
-  Subjects({this.nama, this.materi, this.pelajaran, this.jam});
+  Subjects({this.nama, this.materi, this.pelajaran, this.jam, this.deskripsi});
 }

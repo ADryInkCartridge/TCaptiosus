@@ -38,7 +38,9 @@ class _HomePageState extends State<HomePage> {
   final searchBar = TextEditingController();
   final authService auth = authService();
   final FirebaseAuth user = FirebaseAuth.instance;
+  String uid = '';
   String name = '';
+  String imageUrl = '';
   bool id;
 
   @override
@@ -49,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   void getUserData() async {
     final FirebaseUser data = await user.currentUser();
-    final String uid = data.uid;
+    uid = data.uid;
     print(uid);
     // ignore: unused_local_variable
     DocumentSnapshot userData =
@@ -60,6 +62,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
           name = value.data["Name"].toString();
           id = value.data["Status"];
+          imageUrl = value.data["imageUrl"];
         });
     });
   }
@@ -84,13 +87,13 @@ class _HomePageState extends State<HomePage> {
                   leading: IconButton(
                       icon: Icon(Icons.arrow_back, color: Colors.black),
                       onPressed: () {
-                        print(DatabaseService().questions.length);
-                        // auth.signOut();
-                        // Navigator.pushAndRemoveUntil(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (BuildContext context) => Wrapper()),
-                        //     ModalRoute.withName('/wrapper'));
+                        //print(imageUrl);
+                        auth.signOut();
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Wrapper()),
+                            ModalRoute.withName('/wrapper'));
                       }),
                   backgroundColor: Colors.transparent,
                   elevation: 0.0,
@@ -151,10 +154,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Center(
                       child: GestureDetector(
-                        onTap: () =>
-                            Navigator.pushReplacementNamed(context, '/'),
+                        onTap: () {
+                          DatabaseService().uploadPhoto(uid).then((value) {
+                            if (value != null)
+                              setState(() {
+                                imageUrl = value;
+                              });
+                          });
+                        },
                         child: CircleAvatar(
-                          backgroundImage: AssetImage("assets/img/mel.PNG"),
+                          backgroundImage: NetworkImage(imageUrl),
                           radius: 60,
                         ),
                       ),
@@ -186,6 +195,13 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w800,
                           fontSize: 18,
                         ),
+                      ),
+                    ),
+                    Center(
+                      child: GestureDetector(
+                        child: Icon(Icons.ac_unit),
+                        onTap: () =>
+                            Navigator.pushNamed(context, "/add_question"),
                       ),
                     ),
                     Expanded(
