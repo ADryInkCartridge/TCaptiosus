@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:forum_test/Services/auth.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:email_validator/email_validator.dart';
+import 'verification.dart';
 import 'package:forum_test/Home.dart';
 
 void main() => runApp(MaterialApp(
@@ -79,6 +81,12 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (name) {
+                          if (name.isEmpty) {
+                            return 'Invalid name';
+                          }
+                          return null;
+                        },
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
@@ -107,6 +115,9 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (email) => EmailValidator.validate(email)
+                            ? null
+                            : "Invalid email address",
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
@@ -135,6 +146,15 @@ class _SignUpState extends State<SignUp> {
                             // labelText: "Email,
                           ),
                         ),
+                        validator: (password) {
+                          Pattern pattern =
+                              r'^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$';
+                          RegExp regex = new RegExp(pattern);
+                          if (!regex.hasMatch(password))
+                            return 'Password must contain letters and numbers';
+                          else
+                            return null;
+                        },
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),
                       ),
