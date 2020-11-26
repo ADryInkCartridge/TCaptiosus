@@ -182,48 +182,62 @@ class _SignUpState extends State<SignUp> {
                       //   textInputAction: TextInputAction.next,
                       //   onEditingComplete: () => node.nextFocus(),
                       // ),
-                      Container(
-                        child: DropdownButton<String>(
+                      DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.transparent,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: HexColor("ef9c80")),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: HexColor("ef9c80")),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: HexColor("ef9c80")),
+                          ),
+                        ),
+                        items: [
+                          DropdownMenuItem<String>(
+                            child: Text(
+                              "Dosen",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Colors.black,
+                              ),
+                            ),
+                            value: 'one',
+                          ),
+                          DropdownMenuItem<String>(
+                            child: Text(
+                              "Mahasiswa",
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Colors.black,
+                              ),
+                            ),
+                            value: 'two',
+                          ),
+                        ],
+                        onChanged: (String value) {
+                          setState(() {
+                            _value = value;
+                          });
+                        },
+                        hint: Text(
+                          'Title',
                           style: TextStyle(
+                            fontSize: 15,
                             fontFamily: 'Poppins',
                           ),
-                          items: [
-                            DropdownMenuItem<String>(
-                              child: Text(
-                                "Dosen",
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              value: 'one',
-                            ),
-                            DropdownMenuItem<String>(
-                              child: Text(
-                                "Mahasiswa",
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              value: 'two',
-                            ),
-                          ],
-                          onChanged: (String value) {
-                            setState(() {
-                              _value = value;
-                              if (value == "two") {
-                                status = true;
-                              } else {
-                                status = false;
-                              }
-                            });
-                          },
-                          hint: Text('Title'),
-                          value: _value,
                         ),
+                        value: _value,
+                        validator: (value) =>
+                            value == null ? 'Please fill in your title' : null,
                       ),
                       SizedBox(height: 30.0),
                       Center(

@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Center(
                       child: GestureDetector(
-                        child: Icon(Icons.ac_unit),
+                        child: Icon(Icons.add),
                         onTap: () =>
                             Navigator.pushNamed(context, "/add_question"),
                       ),

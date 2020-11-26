@@ -82,57 +82,89 @@ class _QuestionCardState extends State<QuestionCard> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView(children: <Widget>[
-              SizedBox(
-                height: 250,
+          Container(
+            padding: EdgeInsets.fromLTRB(35, 70, 35, 20),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 2,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
-              Text(
-                questionDetails.nama,
-                style: TextStyle(
-                  height: 1.8,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Colors.cyan[400]),
                 ),
+                child: ListView(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      questionDetails.nama,
+                      style: TextStyle(
+                        height: 1.8,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w900,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      questionDetails.pelajaran,
+                      style: TextStyle(
+                        height: 1.8,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w900,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      questionDetails.materi,
+                      style: TextStyle(
+                        height: 1.8,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      questionDetails.jam,
+                      style: TextStyle(
+                        height: 1.8,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      questionDetails.deskripsi,
+                      style: TextStyle(
+                        height: 1.8,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ]),
               ),
-              Text(
-                questionDetails.pelajaran,
-                style: TextStyle(
-                  height: 1.8,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-              Text(
-                questionDetails.materi,
-                style: TextStyle(
-                  height: 1.8,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-              Text(
-                questionDetails.jam,
-                style: TextStyle(
-                  height: 1.8,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-              Text(
-                questionDetails.deskripsi,
-                style: TextStyle(
-                  height: 1.8,
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-            ]),
+            ),
           )
         ])));
   }
