@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Landing.dart';
+import 'package:forum_test/Services/auth.dart';
+import 'package:forum_test/Services/user.dart';
+import 'package:forum_test/wrapper.dart';
 import 'Home.dart';
 import 'Login/forgot.dart';
 import 'Login/login.dart';
 import 'Login/verification.dart';
 import 'Login/signup.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(new MyApp());
 
@@ -13,17 +17,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: "Forum",
-      home: LandingPage(),
-      routes: <String, WidgetBuilder>{
-        "/register": (BuildContext context) => SignUp(),
-        "/forgot": (BuildContext context) => Forgot_Password(),
-        "/verification": (BuildContext context) => Verification(),
-        '/login': (BuildContext context) => new SignIn(),
-        '/home': (BuildContext context) => new HomePage(),
-      },
-      initialRoute: '/',
+    return StreamProvider<User>.value(
+      value: authService().user,
+      child: MaterialApp(
+        home: Wrapper(),
+        routes: <String, WidgetBuilder>{
+          "/landing": (BuildContext context) => LandingPage(),
+          "/register": (BuildContext context) => SignUp(),
+          "/forgot": (BuildContext context) => Forgot_Password(),
+          "/verification": (BuildContext context) => Verification(),
+          '/login': (BuildContext context) => new SignIn(),
+          '/home': (BuildContext context) => new HomePage(),
+        },
+        initialRoute: '/',
+      ),
     );
   }
 }
