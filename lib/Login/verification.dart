@@ -79,10 +79,11 @@ class _VerificationState extends State<Verification> {
                           ),
                         ),
                         validator: (nrp) {
-                          if (nrp.isEmpty) {
+                          if (!nrp.startsWith(new RegExp(r'(051)')) ||
+                              nrp.length != 14)
                             return 'Invalid NRP';
-                          }
-                          return null;
+                          else
+                            return null;
                         },
                         textInputAction: TextInputAction.next,
                         onEditingComplete: () => node.nextFocus(),

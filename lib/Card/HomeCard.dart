@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:forum_test/Card/questioncard.dart';
 import 'package:provider/provider.dart';
 import 'CardCons.dart';
 import 'package:flutter/material.dart';
@@ -124,9 +125,13 @@ Widget subjectList(BuildContext context) {
                   child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                          onTap: () {
-                            print(questions[index].pelajaran);
-                          },
+                          onTap: () => {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => QuestionCard(
+                                            questionDetails: questions[index])))
+                              },
                           child: Icon(Icons.navigate_next))),
                 ),
               ),
