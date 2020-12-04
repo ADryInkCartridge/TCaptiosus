@@ -7,6 +7,7 @@ void main() => runApp(MaterialApp(
       home: Add_Question(),
     ));
 
+// ignore: camel_case_types
 class Add_Question extends StatefulWidget {
   Add_Question({Key key, this.url}) : super(key: key);
   final String url;
@@ -14,6 +15,7 @@ class Add_Question extends StatefulWidget {
   _Add_QuestionState createState() => _Add_QuestionState();
 }
 
+// ignore: camel_case_types
 class _Add_QuestionState extends State<Add_Question> {
   // Future<String> uploadImage(filename, url) async {
   //   var request = http.MultipartRequest('POST', Uri.parse(uri));

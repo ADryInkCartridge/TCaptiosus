@@ -1,29 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-void main() => runApp(MaterialApp(
-      home: Add_Answer(),
-    ));
+import 'database.dart';
 
 // ignore: camel_case_types
 class Add_Answer extends StatefulWidget {
-  Add_Answer({Key key, this.url}) : super(key: key);
-  final String url;
+  final String questionId;
+  Add_Answer({Key key, @required this.questionId}) : super(key: key);
   @override
-  _Add_AnswerState createState() => _Add_AnswerState();
+  _Add_AnswerState createState() => _Add_AnswerState(questionId);
 }
 
 // ignore: camel_case_types
 class _Add_AnswerState extends State<Add_Answer> {
-  // Future<String> uploadImage(filename, url) async {
-  //   var request = http.MultipartRequest('POST', Uri.parse(uri));
-  //   request.files.add(await http.MultipartFile.FromPath('picture', filename));
-  //   var res = await request.send();
-  //   return res.reasonPhrase;
-  // }
-  // String state = "";
-
+  String deskripsi;
+  String questionId;
+  _Add_AnswerState(this.questionId);
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
@@ -108,6 +100,9 @@ class _Add_AnswerState extends State<Add_Answer> {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(25, 10, 25, 0),
                                     child: TextField(
+                                      onChanged: (val) {
+                                        setState(() => deskripsi = val);
+                                      },
                                       maxLines: null,
                                       decoration: InputDecoration(
                                         focusedBorder: UnderlineInputBorder(
@@ -146,12 +141,7 @@ class _Add_AnswerState extends State<Add_Answer> {
                       ),
                       IconButton(
                         onPressed: () async {
-                          // var file = await ImagePicker.pickImage(source: ImageSource.gallery);
-                          // var res = await uploadImage(file.path, widget.url);
-                          // setState(() {
-                          //   state = res;
-                          //   print(res);
-                          // });
+                          DatabaseService().addAnswer(questionId, deskripsi);
                         },
                         icon: Image.asset(
                           'assets/img/checklist.png',
