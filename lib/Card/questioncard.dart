@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forum_test/Card/CardCons.dart';
+import 'package:forum_test/Services/add_answer.dart';
 
 class QuestionCard extends StatefulWidget {
   final Subjects questionDetails;
@@ -162,6 +163,15 @@ class _QuestionCardState extends State<QuestionCard> {
                       ),
                     ),
                   ),
+                  Container(
+                    child: FlatButton(
+                        child: Text("Add"),
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Add_Answer(
+                                    questionId: questionDetails.id)))),
+                  )
                 ]),
               ),
             ),

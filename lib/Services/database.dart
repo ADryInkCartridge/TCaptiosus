@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:forum_test/Card/CardCons.dart';
+import 'package:forum_test/Services/add_questions.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'dart:io';
+
+// https://www.youtube.com/watch?v=mtNA1neFNVo&ab_channel=TheNetNinja
 
 class DatabaseService {
   final String uid;
@@ -46,10 +49,31 @@ class DatabaseService {
     });
   }
 
+  Future addAnswer(String id, String deskripsi) async {
+    final FirebaseAuth user = FirebaseAuth.instance;
+    final FirebaseUser data = await user.currentUser();
+    String jam = 'Test';
+    String namaUser = await userProfile
+        .document(data.uid)
+        .get()
+        .then((DocumentSnapshot value) {
+      if (value.data["Name"] != null) {
+        return value.data["Name"];
+      } else {
+        return '';
+      }
+    });
+    return await questionEntries
+        .document(id)
+        .collection("answers")
+        .add({"name": namaUser, "jam": jam, "deskripsi": deskripsi});
+  }
+
   List<Subjects> _subjectSnapshots(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       //print(doc.data.toString());
       return Subjects(
+        id: doc.documentID ?? ' ',
         nama: doc.data['name'] ?? ' ',
         jam: doc.data['jam'] ?? '',
         pelajaran: doc.data['pelajaran'] ?? ' ',
@@ -63,6 +87,7 @@ class DatabaseService {
     return questionEntries.snapshots().map(_subjectSnapshots);
   }
 
+  //https://medium.com/nusanet/flutter-firebase-storage-933ead418690
   Future uploadPhoto(String uid) async {
     File image = await ImagePicker.pickImage(source: ImageSource.gallery);
     if (image == null) {
